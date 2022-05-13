@@ -1,0 +1,17 @@
+import requests
+from pprint import pprint
+
+word = input('what word would you like to search for? ')
+url = 'https://api.jikan.moe/v4/anime?q={}&sfw'.format(word)
+
+response = requests.get(url)
+title = response.json()
+data = title['data']
+
+for title in data:
+    print(' ')
+    print(title['title'])
+    print('Link to myanimelist:', title['url'])
+    print('How many episodes:', title['episodes'])
+    print('How long it is:', title['duration'])
+    print('Synopsis:', title['synopsis'])
